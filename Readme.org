@@ -18,5 +18,5 @@ of the board or Nothing if the player will never find its way out.
 
 
 *** commands
-> stack build
-> stack test
+- stack build
+- stack test
