@@ -15,3 +15,8 @@ The array defines a sequence of jumps of a player as follows:
 ~calculateJumps :: [Int] -> Maybe Int~ that given a non empty list consisting of
 ~N~ elements, returns the number of jumps after which the player will jump out
 of the board or Nothing if the player will never find its way out.
+
+
+***
+for run  test
+> stack test
