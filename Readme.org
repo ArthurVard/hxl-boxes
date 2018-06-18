@@ -1,0 +1,17 @@
+* boxes
+
+Let us think of a game consisting of a series of boxes arranged in a single
+line, in which a player starts by jumping onto the first box, and each box
+contains a relative pointer to another box so that if we think of the boxes
+as a zero indexed array, then if ~A[K] = M~ then element ~A[K]~ points to element ~A[K+M]~.
+The array defines a sequence of jumps of a player as follows:
+- initially, the player is located at the first element.
+- on each jump the player moves from its current element to the destination
+  element pointed to by the current element; i.e. if the player stands on
+  element ~A[K]~ then it jumps to the element pointed to by ~A[K]~;
+- the player may jump forever or may jump out of the array.
+
+*** Write a function:
+~calculateJumps :: [Int] -> Maybe Int~ that given a non empty list consisting of
+~N~ elements, returns the number of jumps after which the player will jump out
+of the board or Nothing if the player will never find its way out.
