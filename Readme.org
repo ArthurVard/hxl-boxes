@@ -17,6 +17,6 @@ The array defines a sequence of jumps of a player as follows:
 of the board or Nothing if the player will never find its way out.
 
 
-***
-for run  test
+*** commands
+> stack build
 > stack test
