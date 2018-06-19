@@ -29,8 +29,8 @@ spec = do
     it "no way data sample [3,-1,6,-2,15,8]" $ do
       calculateJumps [3,-1,6,-2,15,8] `shouldBe` Nothing
     it " 2 jump before go out [3,-1,6,-22,15,8]" $ do
-      calculateJumps [3,-1,6,-22,15,8] `shouldBe` (Just 2)
+      calculateJumps [3,-1,6,-22,15,8] `shouldBe` (Just 1)
     it " 3 jump before go out [2,-1,3, 22,15,8]" $ do
-      calculateJumps [2,-1,3, 22,15,8] `shouldBe` (Just 3)
+      calculateJumps [2,-1,3, 22,15,8] `shouldBe` (Just 2)
     it "no way data [1,2,10,0]" $ do
       calculateJumps [1,2,10,0] `shouldBe` Nothing

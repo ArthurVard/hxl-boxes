@@ -1,6 +1,6 @@
 {-
   Created       : 2018 Jun 18 (Mon) 10:06:00 PM by Arthur Vardanyan.
-  Last Modified : 2018 Jun 19 (Tue) 09:42:33 PM by Arthur Vardanyan.
+  Last Modified : 2018 Jun 19 (Tue) 10:25:35 PM by Arthur Vardanyan.
 -}
 
 module Boxes
@@ -20,19 +20,19 @@ type JumpTo = Int
 -- >>> calculateJumps [3,-1,6,-2,15,8]
 -- Nothing
 -- >>> calculateJumps [3,-1,6,-22,15,8]
--- Just 2
+-- Just 1
 -- >>> calculateJumps [1,2,10,0]
 -- Nothing
 calculateJumps :: [Int] -> Maybe Int
 calculateJumps xs  = jump 0 (mkBoxes xs) []
     where
       jump :: Int -> [(JumpTo, Index)] -> [Index] -> Maybe Int
-      jump _ [] vs = Just $ length vs
+      jump _ [] vs = Just $ length vs - 1
       jump n zs vs = case (elemAt n zs) of
                        [(k,i)]  -> if i `elem` vs
                                    then Nothing
                                    else jump k zs (i:vs)
-                       _       -> Just $ length vs
+                       _       -> Just $ length vs - 1
 
 
 -- | The 'mkBoxes' funcion creates more convenient data structure to process
@@ -64,6 +64,27 @@ elemAt n (x:xs) | n < 0 = []
                 | n == 0 = [x]
                 | otherwise = elemAt (n-1) xs
 
+-------------------------------------------------------------------------------
+-- simple solution
+
+-- >>> calculateJumps'' [3,-1,6,-2,15,8]
+-- Nothing
+-- >>> calculateJumps'' [3,-1,6,-22,15,8]
+-- Just 1
+-- >>> calculateJumps'' [1,2,10,0]
+-- Nothing
+
+calculateJumps'' :: [Int] -> Maybe Int
+calculateJumps'' xs  = jump 0 (mkMap xs) 0
+    where
+      listN = length xs
+      jump :: Int -> Map.IntMap Int -> Int -> Maybe Int
+      jump n zs count  = case (Map.lookup n zs) of
+                           Just k  -> if count > listN
+                                      then Nothing
+                                      else jump k zs (count + 1)
+                           _       -> Just count
+
 
 
 -------------------------------------------------------------------------------
@@ -71,7 +92,7 @@ elemAt n (x:xs) | n < 0 = []
 
 
 mkMap :: [Int] -> Map.IntMap Int
-mkMap = Map.fromList . zip [0..]
+mkMap = Map.fromList . mkBoxes
 
 
 calculateJumps' :: [Int] -> Maybe Int
