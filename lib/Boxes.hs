@@ -1,6 +1,6 @@
 {-
   Created       : 2018 Jun 18 (Mon) 10:06:00 PM by Arthur Vardanyan.
-  Last Modified : 2018 Jun 19 (Tue) 09:37:40 PM by Arthur Vardanyan.
+  Last Modified : 2018 Jun 19 (Tue) 09:42:33 PM by Arthur Vardanyan.
 -}
 
 module Boxes
@@ -96,7 +96,7 @@ mlenght (x:xs) =
   in loop 1 1 x xs
 
 -------------------------------------------------------------------------------
--- Exercise
+-- Stream playgroun
 
 infix 5 :.
 data Stream a = a :. Stream  a
