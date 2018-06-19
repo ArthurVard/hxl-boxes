@@ -1,6 +1,6 @@
 {-
   Created       : 2018 Jun 18 (Mon) 10:06:00 PM by Arthur Vardanyan.
-  Last Modified : 2018 Jun 19 (Tue) 01:55:09 AM by Arthur Vardanyan.
+  Last Modified : 2018 Jun 19 (Tue) 07:53:33 AM by Arthur Vardanyan.
 -}
 
 module Boxes
@@ -8,7 +8,7 @@ module Boxes
     , elemAt) where
 
 type Index   = Int
-type PointTo = Int
+type JumpTo = Int
 
 -- | The 'calculateJumps' function finds the number of jumps before
 --   jumping out of the board
@@ -22,7 +22,7 @@ type PointTo = Int
 calculateJumps :: [Int] -> Maybe Int
 calculateJumps xs  = jump 0 (mkBoxes xs) []
     where
-      jump :: Int -> [(PointTo, Index)] -> [Index] -> Maybe Int
+      jump :: Int -> [(JumpTo, Index)] -> [Index] -> Maybe Int
       jump _ [] vs = Just $ length vs
       jump n zs vs = case (elemAt n zs) of
                        [(k,i)]  -> if i `elem` vs
@@ -37,7 +37,7 @@ calculateJumps xs  = jump 0 (mkBoxes xs) []
 -- [(1,0),(3,1),(5,2),(7,3)]
 -- >>> mkBoxes [1,2,-6,4]
 -- [(1,0),(3,1),(-4,2),(7,3)]
-mkBoxes :: [Int] -> [(PointTo, Index)]
+mkBoxes :: [Int] -> [(JumpTo, Index)]
 mkBoxes xs = zip (zipWith (+) [0..] xs) [0..]
 
 
