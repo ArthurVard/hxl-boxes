@@ -19,7 +19,7 @@ library
   default-extensions:  OverloadedStrings
   exposed-modules:     Boxes
   build-depends:     base >= 4.7 && < 5
-
+                   , containers
 
 executable boxes
   hs-source-dirs:      src
